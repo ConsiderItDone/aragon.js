@@ -256,7 +256,7 @@ export default class Aragon {
     const { permissions: cachedPermissions, blockNumber: cachedBlockNumber } = cachedAclState
 
     const pastEventsOptions = {
-      toBlock: cacheBlockHeight,
+      toBlock: cacheBlockHeight === 0 ? undefined : cacheBlockHeight,
       // When using cache, fetch events from the next block after cache
       fromBlock: cachedPermissions ? cachedBlockNumber + 1 : undefined
     }

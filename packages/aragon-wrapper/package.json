@@ -2,7 +2,7 @@
   "name": "@aragon/wrapper",
   "version": "5.5.1",
   "description": "Library for Aragon client implementations",
-  "main": "dist/index.js",
+  "main": "src/index.js",
   "files": [
     "artifacts",
     "dist"
