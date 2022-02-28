@@ -1,8 +1,8 @@
 {
-  "name": "@aragon/wrapper",
+  "name": "@cidt/aragon-wrapper",
   "version": "5.5.1",
   "description": "Library for Aragon client implementations",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "files": [
     "artifacts",
     "dist"
@@ -18,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/aragon/aragon.js.git"
+    "url": "git+https://github.com/ConsiderItDone/aragon.js.git"
   },
   "keywords": [
     "ethereum",
@@ -30,9 +30,9 @@
   "author": "Aragon Association <legal@aragon.org>",
   "license": "AGPL-3.0",
   "bugs": {
-    "url": "https://github.com/aragon/aragon.js/issues"
+    "url": "https://github.com/ConsiderItDone/aragon.js/issues"
   },
-  "homepage": "https://github.com/aragon/aragon.js#readme",
+  "homepage": "https://github.com/ConsiderItDone/aragon.js#readme",
   "devDependencies": {
     "@babel/cli": "^7.1.2",
     "@babel/core": "^7.1.2",
