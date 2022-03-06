@@ -613,7 +613,7 @@ export class AppProxy {
 
         const events$ = concat(
           // Past events
-          defer(() => getPastEvents(cachedBlock, pastEventsToBlock)),
+          defer(() => getPastEvents(cachedBlock, pastEventsToBlock === 0 ? undefined : pastEventsToBlock)),
           // Current events
           defer(() => {
             // Fetch current events from block after cached block
