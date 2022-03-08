@@ -268,9 +268,8 @@ export default class Aragon {
     }
 
     const pastEventsOptions = {
-      toBlock: cacheBlockHeight === 0 ? undefined : cacheBlockHeight,
-      // When using cache, fetch events from the next block after cache
-      fromBlock: cachedPermissions ? cachedBlockNumber + 1 : undefined
+      toBlock,
+      fromBlock,
     }
     const pastEvents$ = this.aclProxy.pastEvents(null, pastEventsOptions).pipe(
       mergeMap((pastEvents) => from(pastEvents)),
@@ -280,7 +279,7 @@ export default class Aragon {
         returnValues: {}
       })
     )
-    const currentEvents$ = this.aclProxy.events(null, { fromBlock: cacheBlockHeight + 1 }).pipe(
+    const currentEvents$ = this.aclProxy.events(null, { fromBlock: toBlock + 1 }).pipe(
       startWith({
         event: 'starting current events',
         returnValues: {}
@@ -329,7 +328,7 @@ export default class Aragon {
           this.cache.set(
             ACL_CACHE_KEY,
             // Make copy for cache
-            { permissions: Object.assign({}, permissions), blockNumber: cacheBlockHeight }
+            { permissions: Object.assign({}, permissions), blockNumber: toBlock }
           )
         }
         return permissions
