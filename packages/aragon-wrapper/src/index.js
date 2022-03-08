@@ -255,6 +255,18 @@ export default class Aragon {
     const cachedAclState = await this.cache.get(ACL_CACHE_KEY, {})
     const { permissions: cachedPermissions, blockNumber: cachedBlockNumber } = cachedAclState
 
+    // When using cache, fetch events from the next block after cache
+    let fromBlock = cachedPermissions ? cachedBlockNumber : 0;
+    let toBlock = cacheBlockHeight;
+    
+    if (fromBlock === 0) {
+      fromBlock = this.kernelProxy.initializationBlock - 1;
+    }
+    
+    if (fromBlock > toBlock) {
+      toBlock = fromBlock;
+    }
+
     const pastEventsOptions = {
       toBlock: cacheBlockHeight === 0 ? undefined : cacheBlockHeight,
       // When using cache, fetch events from the next block after cache

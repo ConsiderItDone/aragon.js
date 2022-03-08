@@ -24,7 +24,12 @@ export default class ContractProxy {
    * @return {Observable} Single-emission observable with an array of past events
    */
   pastEvents (eventNames, options = {}) {
-    options.fromBlock = options.fromBlock || this.initializationBlock
+    if (!options.fromBlock) {
+      options.fromBlock = this.initializationBlock
+    }
+    if (options.toBlock && options.fromBlock > options.toBlock) {
+      options.toBlock = options.fromBlock
+    }
     eventNames = getEventNames(eventNames)
 
     // The `from`s only unpack the returned Promises (and not the array inside them!)
